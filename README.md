@@ -1,4 +1,4 @@
-# WildFly with SSH
+## WildFly with SSH
 
 sudo docker build -t adejonge/wildfly .
 
