@@ -1,12 +1,23 @@
-FROM rastasheep/ubuntu-sshd:14.04
 
-ENV WILDFLY_VERSION 9.0.0.Final
+FROM java:8u77-jre-alpine
 
-RUN apt-get update && apt-get install -y curl openjdk-7-jre-headless --no-install-recommends
-RUN cd /opt && curl http://download.jboss.org/wildfly/$WILDFLY_VERSION/wildfly-$WILDFLY_VERSION.tar.gz | tar zx && mv /opt/wildfly-$WILDFLY_VERSION /opt/wildfly
+MAINTAINER Adriaan de Jonge <adejonge@xebia.com>
 
-ENV JBOSS_HOME /opt/wildfly
+RUN apk --update add openssh curl \
+  && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
+  && echo "root:root" | chpasswd \
+  && rm -rf /var/cache/apk/*
+COPY rootfs /
 
+ENV WILDFLY_VERSION 10.0.0.Final
+
+RUN cd /lib \
+  && curl http://download.jboss.org/wildfly/$WILDFLY_VERSION/wildfly-$WILDFLY_VERSION.tar.gz | tar zx \
+  && mv /lib/wildfly-$WILDFLY_VERSION /lib/wildfly
+ENV JBOSS_HOME /lib/wildfly
+
+EXPOSE 22
 EXPOSE 8081
 
-CMD /usr/sbin/sshd && /opt/wildfly/bin/standalone.sh -b 0.0.0.0 -Djboss.http.port=8081
+CMD ["/sshd"]
+
