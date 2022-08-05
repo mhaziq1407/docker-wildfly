@@ -39,7 +39,7 @@ ADD module.xml /lib/wildfly/modules/system/layers/base/com/microsoft/sqlserver/j
 
 
 
-CMD ["/lib/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+
 
 EXPOSE 22
 EXPOSE 8081
