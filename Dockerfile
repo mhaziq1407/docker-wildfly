@@ -30,6 +30,8 @@ ADD standalone.xml /lib/wildfly/standalone/configuration/
 
 ADD standalone.conf /lib/wildfly/bin/
 
+ENV JBOSS_HOME /lib/wildfly
+
 
 RUN mkdir -p /lib/wildfly/modules/system/layers/base/com/microsoft/sqlserver/jdbc/main && \
   cd /lib/wildfly/modules/system/layers/base/com/microsoft/sqlserver/jdbc/main && \
