@@ -44,7 +44,7 @@ ADD module.xml /lib/wildfly/modules/system/layers/base/com/microsoft/sqlserver/j
 
 
 EXPOSE 22
-EXPOSE 8081
+EXPOSE 8080
 
 CMD ["/sshd"]
 
