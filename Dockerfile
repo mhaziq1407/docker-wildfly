@@ -9,11 +9,10 @@ RUN apk --update add openssh curl \
   && rm -rf /var/cache/apk/*
 COPY rootfs /
 
-ENV WILDFLY_VERSION 21.0.0.Final
 
 RUN cd /lib \
-  && curl http://download.jboss.org/wildfly/$WILDFLY_VERSION/wildfly-$WILDFLY_VERSION.tar.gz | tar zx \
-  && mv /lib/wildfly-$WILDFLY_VERSION /lib/wildfly
+  && curl https://download.jboss.org/wildfly/21.0.0.Final/wildfly-21.0.0.Final.tar.gz | tar zx \
+  && mv /lib/wildfly-21.0.0.Final /lib/wildfly
 ENV JBOSS_HOME /lib/wildfly
 
 EXPOSE 22
