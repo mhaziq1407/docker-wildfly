@@ -1,8 +1,6 @@
 
 FROM java:8u77-jre-alpine
 
-MAINTAINER Adriaan de Jonge <adejonge@xebia.com>
-
 RUN apk --update add openssh curl \
   && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
   && echo "root:root" | chpasswd \
@@ -40,8 +38,5 @@ curl -L https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/$MSSQL
 ADD module.xml /lib/wildfly/modules/system/layers/base/com/microsoft/sqlserver/jdbc/main/
 
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
-
-EXPOSE 22
-EXPOSE 8080
 
 
