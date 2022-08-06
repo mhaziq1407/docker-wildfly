@@ -39,8 +39,7 @@ curl -L https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/$MSSQL
 
 ADD module.xml /lib/wildfly/modules/system/layers/base/com/microsoft/sqlserver/jdbc/main/
 
-CMD ["/sshd"]
-
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
 
 EXPOSE 22
 EXPOSE 8080
