@@ -11,7 +11,7 @@ COPY rootfs /
 
 RUN cd /lib \
   && curl https://download.jboss.org/wildfly/21.0.0.Final/wildfly-21.0.0.Final.tar.gz | tar zx \
-  && mv /lib/wildfly-$WILDFLY_VERSION /lib/wildfly
+  && mv /lib/wildfly-21.0.0.Final /lib/wildfly
 ENV JBOSS_HOME /lib/wildfly
 
 EXPOSE 22
